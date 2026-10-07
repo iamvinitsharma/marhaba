@@ -1,0 +1,13 @@
+# Source material (not part of the site)
+*.pdf
+/India 2*.jpg
+/Riba-post-1 1.jpg
+/*-hp.jpg
+/*.webp
+# Local tooling
+.claude/
+
+# Unused copies (originals remain in project root)
+assets/images/app-3d.webp
+assets/images/app-waterproof.webp
+assets/images/hero-laticrete.webp
