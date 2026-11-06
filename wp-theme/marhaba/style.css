@@ -1,0 +1,80 @@
+/*
+Theme Name:   Marhaba
+Theme URI:    https://www.marhabahrain.com
+Description:  Custom theme for Marhaba Palace Trading Establishment, Bahrain — building finishing materials, flooring, waterproofing and construction chemicals.
+Author:       AmpWord
+Version:      1.0.0
+Requires at least: 6.4
+Requires PHP: 7.4
+License:      GPL-2.0-or-later
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  marhaba
+*/
+
+/* Design styles live in assets/css/main.css (shared with the static prototype).
+   This file holds WordPress-specific additions only. */
+
+/* Admin bar offset for the sticky header */
+.admin-bar .header { top: 32px; }
+@media (max-width: 782px) { .admin-bar .header { top: 46px; } }
+
+/* Primary menu (when a menu is assigned under Appearance → Menus) */
+.nav .menu { display: flex; align-items: center; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.nav .menu > li { position: relative; }
+.nav .menu > li > a { display: flex; align-items: center; gap: 6px; padding: 30px 14px; font-family: var(--font-head); font-weight: 600; font-size: 14.5px; color: var(--ink); }
+.nav .menu > li:hover > a,
+.nav .menu > li.current-menu-item > a { color: var(--accent); }
+.nav .menu-item-has-children > a::after { content: ""; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); margin-left: 4px; }
+.nav .sub-menu {
+  position: absolute; top: 100%; left: 0; min-width: 240px; list-style: none; margin: 0; padding: 12px;
+  background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 3px solid var(--accent);
+  opacity: 0; visibility: hidden; transform: translateY(10px); transition: all .25s ease; z-index: 5;
+}
+.nav .menu > li:hover > .sub-menu { opacity: 1; visibility: visible; transform: none; }
+.nav .sub-menu a { display: block; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; color: var(--ink); }
+.nav .sub-menu a:hover { background: var(--sand); color: var(--accent); }
+.drawer nav ul { list-style: none; margin: 0; padding: 0; }
+.drawer nav .sub-menu a { padding-left: 16px; font-weight: 500; }
+
+/* Enquiry form notices */
+.form-notice { grid-column: 1 / -1; padding: 14px 18px; border-radius: var(--radius-sm); font-size: 14.5px; font-weight: 600; }
+.form-notice--ok { background: #e8f7ee; color: #1b6b3a; }
+.form-notice--err { background: #fdecea; color: var(--accent-dark); }
+.hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Inner pages */
+.page-hero { background: var(--ink); color: #c9d4df; padding: 90px 0 70px; }
+.page-hero h1 { color: #fff; font-size: clamp(32px, 4vw, 52px); font-weight: 800; letter-spacing: -.02em; }
+.page-hero p { margin-top: 14px; color: #9fb0c2; max-width: 640px; }
+.entry { padding: 80px 0; }
+.entry-content { max-width: 820px; }
+.entry-content > * + * { margin-top: 1.1em; }
+.entry-content h2 { font-size: 30px; margin-top: 1.6em; }
+.entry-content h3 { font-size: 22px; margin-top: 1.4em; }
+.entry-content a { color: var(--accent); text-decoration: underline; }
+.entry-content ul, .entry-content ol { padding-left: 1.3em; list-style: revert; }
+.entry-content img { border-radius: var(--radius); height: auto; }
+.entry-content .alignwide, .entry-content .alignfull { max-width: none; }
+.post-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.post-card { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #fff; transition: all .3s; }
+.post-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+.post-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.post-card__body { padding: 24px; }
+.post-card h2 { font-size: 20px; margin-bottom: 10px; }
+.post-card time { font-size: 13px; color: var(--muted); }
+.pagination { margin-top: 50px; display: flex; gap: 8px; }
+.pagination .page-numbers { padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; font-weight: 600; }
+.pagination .current { background: var(--ink); color: #fff; border-color: var(--ink); }
+@media (max-width: 960px) { .post-list { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .post-list { grid-template-columns: 1fr; } }
+
+/* Core alignment classes */
+.screen-reader-text { position: absolute !important; clip: rect(1px, 1px, 1px, 1px); width: 1px; height: 1px; overflow: hidden; }
+.alignleft { float: left; margin: 0 1.5em 1em 0; }
+.alignright { float: right; margin: 0 0 1em 1.5em; }
+.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+.wp-caption-text { font-size: 13px; color: var(--muted); }
+
+/* Slides 2–3 use h2 for a single page h1; keep them identical */
+.hero .hero__title { color: #fff; font-size: clamp(38px, 5.2vw, 72px); font-weight: 800; letter-spacing: -.025em; margin-bottom: 24px; }
+.hero .hero__title em { font-style: normal; color: var(--accent); }
