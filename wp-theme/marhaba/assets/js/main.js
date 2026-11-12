@@ -75,4 +75,16 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  // Product group slider arrows (single brand page)
+  var track = document.querySelector('.brand-groups__track');
+  if (track) {
+    document.querySelectorAll('[data-scroll]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var card = track.querySelector('.group-card');
+        var step = card ? card.getBoundingClientRect().width + 15 : 300;
+        track.scrollBy({ left: step * +btn.getAttribute('data-scroll'), behavior: 'smooth' });
+      });
+    });
+  }
 })();

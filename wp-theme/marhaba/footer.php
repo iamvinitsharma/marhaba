@@ -54,8 +54,12 @@ $marhaba_wa       = preg_replace( '/\D/', '', marhaba_opt( 'whatsapp' ) );
 				<h4><?php esc_html_e( 'Brands', 'marhaba' ); ?></h4>
 				<ul>
 					<?php
-					foreach ( array( 'LATICRETE', 'DCP', 'GERFLOR / BOSTIK', 'Wonderfloor', 'Terraco', 'Triton' ) as $marhaba_label ) {
-						printf( '<li><a href="%s">%s</a></li>', esc_url( marhaba_anchor( 'brands' ) ), esc_html( $marhaba_label ) );
+					$marhaba_footer_brands = marhaba_get_brands( array( 'posts_per_page' => 7 ) );
+					foreach ( $marhaba_footer_brands as $marhaba_b ) {
+						printf( '<li><a href="%s">%s</a></li>', esc_url( get_permalink( $marhaba_b ) ), esc_html( get_the_title( $marhaba_b ) ) );
+					}
+					if ( $marhaba_footer_brands ) {
+						printf( '<li><a href="%s">%s</a></li>', esc_url( get_post_type_archive_link( 'brand' ) ), esc_html__( 'All brands →', 'marhaba' ) );
 					}
 					?>
 				</ul>

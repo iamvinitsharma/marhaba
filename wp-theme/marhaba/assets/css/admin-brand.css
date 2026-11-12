@@ -1,0 +1,10 @@
+#marhaba-brand .mb-intro { margin: 12px 0 0; }
+#marhaba-brand .mb-table th { width: 190px; }
+.mb-image { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.mb-image__preview img { display: block; max-height: 48px; max-width: 140px; border: 1px solid #dcdcde; border-radius: 4px; background: #f6f7f7; padding: 2px; }
+.mb-stats { display: grid; gap: 6px; max-width: 520px; margin-top: 8px; }
+.mb-stats__row { display: grid; grid-template-columns: 140px 1fr; gap: 6px; }
+.mb-groups { display: grid; gap: 8px; margin: 10px 0; }
+.mb-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px; background: #f6f7f7; border: 1px solid #dcdcde; border-radius: 6px; }
+.mb-group__handle { cursor: move; font-size: 18px; color: #787c82; }
+.mb-group .regular-text { width: 220px; }

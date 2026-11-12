@@ -7,10 +7,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MARHABA_VERSION', '1.0.0' );
+define( 'MARHABA_VERSION', '1.1.0' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/enquiry.php';
+require_once get_template_directory() . '/inc/brands.php';
+require_once get_template_directory() . '/inc/brand-import.php';
 
 /**
  * Theme supports and menus.
@@ -49,6 +51,7 @@ function marhaba_assets() {
 	wp_enqueue_style( 'marhaba-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap', array(), null );
 	wp_enqueue_style( 'marhaba-main', get_theme_file_uri( 'assets/css/main.css' ), array( 'marhaba-fonts' ), MARHABA_VERSION );
 	wp_enqueue_style( 'marhaba-style', get_stylesheet_uri(), array( 'marhaba-main' ), MARHABA_VERSION );
+	wp_enqueue_style( 'marhaba-brands', get_theme_file_uri( 'assets/css/brands.css' ), array( 'marhaba-style' ), MARHABA_VERSION );
 	wp_enqueue_script( 'marhaba-main', get_theme_file_uri( 'assets/js/main.js' ), array(), MARHABA_VERSION, array( 'in_footer' => true, 'strategy' => 'defer' ) );
 }
 add_action( 'wp_enqueue_scripts', 'marhaba_assets' );
@@ -136,7 +139,8 @@ function marhaba_drawer_fallback() {
 		'contact'   => __( 'Contact', 'marhaba' ),
 	);
 	foreach ( $links as $id => $label ) {
-		printf( '<a href="%s">%s</a>', esc_url( marhaba_anchor( $id ) ), esc_html( $label ) );
+		$url = ( 'brands' === $id && post_type_exists( 'brand' ) && wp_count_posts( 'brand' )->publish ) ? get_post_type_archive_link( 'brand' ) : marhaba_anchor( $id );
+		printf( '<a href="%s">%s</a>', esc_url( $url ), esc_html( $label ) );
 	}
 }
 
