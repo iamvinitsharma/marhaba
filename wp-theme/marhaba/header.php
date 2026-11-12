@@ -73,12 +73,12 @@ $marhaba_arabic  = marhaba_opt( 'arabic_url' );
 
 		<div class="header__actions">
 			<a href="<?php echo esc_url( marhaba_anchor( 'contact' ) ); ?>" class="btn btn--primary"><?php esc_html_e( 'Request a Quote', 'marhaba' ); ?> <?php echo marhaba_icon( 'i-arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a>
-			<button class="icon-btn burger" id="burger" aria-label="<?php esc_attr_e( 'Open menu', 'marhaba' ); ?>"><?php echo marhaba_icon( 'i-menu' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
+			<button class="icon-btn burger" id="burger" aria-label="<?php esc_attr_e( 'Open menu', 'marhaba' ); ?>" aria-controls="drawer" aria-expanded="false"><?php echo marhaba_icon( 'i-menu' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
 		</div>
 	</div>
 </header>
 
-<div class="drawer" id="drawer">
+<div class="drawer" id="drawer" aria-hidden="true">
 	<div class="drawer__panel">
 		<button class="icon-btn drawer__close" id="drawerClose" aria-label="<?php esc_attr_e( 'Close menu', 'marhaba' ); ?>"><?php echo marhaba_icon( 'i-close' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
 		<nav aria-label="<?php esc_attr_e( 'Mobile', 'marhaba' ); ?>">
@@ -94,6 +94,18 @@ $marhaba_arabic  = marhaba_opt( 'arabic_url' );
 			?>
 		</nav>
 		<a href="<?php echo esc_url( marhaba_anchor( 'contact' ) ); ?>" class="btn btn--primary"><?php esc_html_e( 'Request a Quote', 'marhaba' ); ?> <?php echo marhaba_icon( 'i-arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a>
+		<?php $marhaba_wa = preg_replace( '/\D/', '', marhaba_opt( 'whatsapp' ) ); ?>
+		<div class="drawer__contact">
+			<?php if ( $marhaba_phone ) : ?>
+				<a href="<?php echo esc_attr( marhaba_tel( $marhaba_phone ) ); ?>"><?php echo marhaba_icon( 'i-phone' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php echo esc_html( $marhaba_phone ); ?></a>
+			<?php endif; ?>
+			<?php if ( $marhaba_wa ) : ?>
+				<a href="<?php echo esc_url( 'https://wa.me/' . $marhaba_wa ); ?>" target="_blank" rel="noopener"><?php echo marhaba_icon( 'i-whatsapp' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'WhatsApp us', 'marhaba' ); ?></a>
+			<?php endif; ?>
+			<?php if ( $marhaba_email ) : ?>
+				<a href="mailto:<?php echo esc_attr( $marhaba_email ); ?>"><?php echo marhaba_icon( 'i-mail' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php echo esc_html( $marhaba_email ); ?></a>
+			<?php endif; ?>
+		</div>
 	</div>
 </div>
 

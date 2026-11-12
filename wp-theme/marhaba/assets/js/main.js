@@ -7,10 +7,50 @@
 
   // Mobile drawer
   var drawer = document.getElementById('drawer');
-  document.getElementById('burger').addEventListener('click', function () { drawer.classList.add('is-open'); });
-  document.getElementById('drawerClose').addEventListener('click', function () { drawer.classList.remove('is-open'); });
+  var burger = document.getElementById('burger');
+  var closeBtn = document.getElementById('drawerClose');
+  function setDrawer(open) {
+    drawer.classList.toggle('is-open', open);
+    drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.documentElement.classList.toggle('drawer-open', open);
+    // Wait a frame so the drawer is visible (focusable) before moving focus into it
+    setTimeout(function () {
+      if (open) { closeBtn.focus(); } else { burger.focus({ preventScroll: true }); }
+    }, 60);
+  }
+  burger.addEventListener('click', function () { setDrawer(true); });
+  closeBtn.addEventListener('click', function () { setDrawer(false); });
   drawer.addEventListener('click', function (e) {
-    if (e.target === drawer || e.target.tagName === 'A') drawer.classList.remove('is-open');
+    if (e.target === drawer || e.target.closest('a')) setDrawer(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) setDrawer(false);
+  });
+  // Close if the viewport grows to desktop while open
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1180 && drawer.classList.contains('is-open')) setDrawer(false);
+  });
+
+  // Expand/collapse buttons for items with sub-menus (fallback menu and WP menus)
+  drawer.querySelectorAll('.menu-item-has-children').forEach(function (li, i) {
+    var sub = li.querySelector('.sub-menu');
+    if (!sub) return;
+    if (!sub.id) sub.id = 'drawer-sub-' + i;
+    var link = li.querySelector('a');
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'drawer__toggle';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', sub.id);
+    btn.setAttribute('aria-label', 'Show ' + link.textContent.trim() + ' submenu');
+    link.insertAdjacentElement('afterend', btn);
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = !li.classList.contains('is-expanded');
+      li.classList.toggle('is-expanded', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   });
 
   // Hero slider

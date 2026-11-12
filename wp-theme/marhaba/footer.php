@@ -51,20 +51,6 @@ $marhaba_wa       = preg_replace( '/\D/', '', marhaba_opt( 'whatsapp' ) );
 				</ul>
 			</div>
 			<div>
-				<h4><?php esc_html_e( 'Brands', 'marhaba' ); ?></h4>
-				<ul>
-					<?php
-					$marhaba_footer_brands = marhaba_get_brands( array( 'posts_per_page' => 7 ) );
-					foreach ( $marhaba_footer_brands as $marhaba_b ) {
-						printf( '<li><a href="%s">%s</a></li>', esc_url( get_permalink( $marhaba_b ) ), esc_html( get_the_title( $marhaba_b ) ) );
-					}
-					if ( $marhaba_footer_brands ) {
-						printf( '<li><a href="%s">%s</a></li>', esc_url( get_post_type_archive_link( 'brand' ) ), esc_html__( 'All brands →', 'marhaba' ) );
-					}
-					?>
-				</ul>
-			</div>
-			<div>
 				<h4><?php esc_html_e( 'Company', 'marhaba' ); ?></h4>
 				<?php
 				wp_nav_menu(

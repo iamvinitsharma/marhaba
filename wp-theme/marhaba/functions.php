@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MARHABA_VERSION', '1.1.0' );
+define( 'MARHABA_VERSION', '1.1.4' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/enquiry.php';
@@ -127,9 +127,26 @@ function marhaba_nav_fallback() {
 }
 
 /**
- * Mobile drawer fallback: plain list of section links.
+ * Mobile drawer fallback: section links, with Solutions and Brands as expandable groups.
  */
 function marhaba_drawer_fallback() {
+	$solutions = array( 'Building Finishing', 'PVC Flooring', 'Carpet & Laminate', 'Epoxy Flooring', 'Waterproofing', 'PVC Solvent Cements' );
+	$brands    = marhaba_get_brands();
+
+	$sub = array(
+		'solutions' => array(),
+		'brands'    => array(),
+	);
+	foreach ( $solutions as $label ) {
+		$sub['solutions'][] = array( marhaba_anchor( 'solutions' ), $label );
+	}
+	foreach ( $brands as $brand ) {
+		$sub['brands'][] = array( get_permalink( $brand ), get_the_title( $brand ) );
+	}
+	if ( $brands ) {
+		$sub['brands'][] = array( get_post_type_archive_link( 'brand' ), __( 'View all brands →', 'marhaba' ) );
+	}
+
 	$links = array(
 		'about'     => __( 'About', 'marhaba' ),
 		'solutions' => __( 'Solutions', 'marhaba' ),
@@ -138,10 +155,25 @@ function marhaba_drawer_fallback() {
 		'sectors'   => __( 'Sectors', 'marhaba' ),
 		'contact'   => __( 'Contact', 'marhaba' ),
 	);
+
+	echo '<ul class="drawer__menu">';
 	foreach ( $links as $id => $label ) {
-		$url = ( 'brands' === $id && post_type_exists( 'brand' ) && wp_count_posts( 'brand' )->publish ) ? get_post_type_archive_link( 'brand' ) : marhaba_anchor( $id );
-		printf( '<a href="%s">%s</a>', esc_url( $url ), esc_html( $label ) );
+		if ( empty( $sub[ $id ] ) ) {
+			printf( '<li><a href="%s">%s</a></li>', esc_url( marhaba_anchor( $id ) ), esc_html( $label ) );
+			continue;
+		}
+		printf(
+			'<li class="menu-item-has-children"><a href="%1$s">%2$s</a><ul class="sub-menu" id="drawer-sub-%3$s">',
+			esc_url( 'brands' === $id && $brands ? get_post_type_archive_link( 'brand' ) : marhaba_anchor( $id ) ),
+			esc_html( $label ),
+			esc_attr( $id )
+		);
+		foreach ( $sub[ $id ] as $item ) {
+			printf( '<li><a href="%s">%s</a></li>', esc_url( $item[0] ), esc_html( $item[1] ) );
+		}
+		echo '</ul></li>';
 	}
+	echo '</ul>';
 }
 
 /**
