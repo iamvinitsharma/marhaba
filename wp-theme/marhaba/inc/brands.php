@@ -84,6 +84,7 @@ function marhaba_brand_fields() {
 		'offer_text'   => array( 'label' => __( '"What We Offer" text', 'marhaba' ), 'type' => 'textarea' ),
 		'offer_image'  => array( 'label' => __( '"What We Offer" image', 'marhaba' ), 'type' => 'image' ),
 		'applications' => array( 'label' => __( 'Applications', 'marhaba' ), 'type' => 'lines', 'help' => __( 'One per line. Shown as tags (e.g. Hospitals, Hotels).', 'marhaba' ) ),
+		'groups_title' => array( 'label' => __( 'Documents section heading', 'marhaba' ), 'type' => 'text', 'help' => __( 'Heading above the document cards. Default: "Catalogues & Documents".', 'marhaba' ) ),
 	);
 }
 
@@ -101,10 +102,20 @@ function marhaba_brand( $key, $post_id = null ) {
 	if ( 'offer_title' === $key && '' === $value ) {
 		return __( 'What We Offer', 'marhaba' );
 	}
+	if ( 'groups_title' === $key && '' === $value ) {
+		return __( 'Catalogues & Documents', 'marhaba' );
+	}
 	if ( 'banner' === $key && '' === $value && has_post_thumbnail( $post_id ) ) {
 		return get_the_post_thumbnail_url( $post_id, 'full' );
 	}
-	if ( in_array( $key, array( 'stats', 'groups' ), true ) ) {
+	if ( 'groups' === $key ) {
+		$groups = is_array( $value ) ? $value : array();
+		foreach ( $groups as &$group ) {
+			$group = wp_parse_args( (array) $group, array( 'title' => '', 'image' => '', 'pdf' => '' ) );
+		}
+		return $groups;
+	}
+	if ( 'stats' === $key ) {
 		return is_array( $value ) ? $value : array();
 	}
 	if ( 'applications' === $key ) {
@@ -198,6 +209,23 @@ function marhaba_image_input( $name, $value ) {
 }
 
 /**
+ * File field markup (URL input + media picker for PDFs).
+ *
+ * @param string $name  Input name.
+ * @param string $value Current URL.
+ */
+function marhaba_file_input( $name, $value ) {
+	?>
+	<div class="mb-file">
+		<input type="url" class="regular-text mb-file__url" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>" placeholder="https://… .pdf">
+		<button type="button" class="button mb-file__pick"><?php esc_html_e( 'Upload PDF', 'marhaba' ); ?></button>
+		<button type="button" class="button-link mb-file__clear"><?php esc_html_e( 'Remove', 'marhaba' ); ?></button>
+		<a class="mb-file__view" href="<?php echo esc_url( $value ); ?>" target="_blank" rel="noopener"<?php echo $value ? '' : ' hidden'; ?>><?php esc_html_e( 'View', 'marhaba' ); ?></a>
+	</div>
+	<?php
+}
+
+/**
  * Render the meta box.
  *
  * @param WP_Post $post Current brand.
@@ -259,9 +287,9 @@ function marhaba_brand_meta_box_render( $post ) {
 		</tr>
 
 		<tr>
-			<th scope="row"><?php esc_html_e( 'Product groups', 'marhaba' ); ?></th>
+			<th scope="row"><?php esc_html_e( 'Documents', 'marhaba' ); ?></th>
 			<td>
-				<p class="description"><?php esc_html_e( 'Cards in the "Product Groups" slider. Drag ≡ to reorder.', 'marhaba' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Add as many documents as you need. Each card shows the image and title; clicking it opens the PDF in a new tab. Drag ≡ to reorder.', 'marhaba' ); ?></p>
 				<div class="mb-groups" data-next="<?php echo (int) count( $groups ); ?>">
 					<?php
 					foreach ( $groups as $i => $group ) {
@@ -270,7 +298,7 @@ function marhaba_brand_meta_box_render( $post ) {
 					?>
 				</div>
 				<script type="text/html" id="tmpl-mb-group"><?php marhaba_brand_group_row( '__i__', array() ); ?></script>
-				<button type="button" class="button mb-groups__add"><?php esc_html_e( '+ Add product group', 'marhaba' ); ?></button>
+				<button type="button" class="button mb-groups__add"><?php esc_html_e( '+ Add document', 'marhaba' ); ?></button>
 			</td>
 		</tr>
 	</table>
@@ -281,15 +309,20 @@ function marhaba_brand_meta_box_render( $post ) {
  * One product-group repeater row.
  *
  * @param int|string $i     Row index.
- * @param array      $group Row data (title, image).
+ * @param array      $group Row data (title, image, pdf).
  */
 function marhaba_brand_group_row( $i, $group ) {
 	$base = 'mb_groups[' . $i . ']';
 	?>
 	<div class="mb-group">
 		<span class="mb-group__handle" title="<?php esc_attr_e( 'Drag to reorder', 'marhaba' ); ?>">≡</span>
-		<input type="text" class="regular-text" name="<?php echo esc_attr( $base ); ?>[title]" value="<?php echo esc_attr( isset( $group['title'] ) ? $group['title'] : '' ); ?>" placeholder="<?php esc_attr_e( 'Group name', 'marhaba' ); ?>">
-		<?php marhaba_image_input( $base . '[image]', isset( $group['image'] ) ? $group['image'] : '' ); ?>
+		<div class="mb-group__fields">
+			<label><span><?php esc_html_e( 'Title', 'marhaba' ); ?></span>
+				<input type="text" class="regular-text" name="<?php echo esc_attr( $base ); ?>[title]" value="<?php echo esc_attr( isset( $group['title'] ) ? $group['title'] : '' ); ?>" placeholder="<?php esc_attr_e( 'e.g. Ceramic tile adhesives', 'marhaba' ); ?>">
+			</label>
+			<div class="mb-group__row"><span><?php esc_html_e( 'Image', 'marhaba' ); ?></span><?php marhaba_image_input( $base . '[image]', isset( $group['image'] ) ? $group['image'] : '' ); ?></div>
+			<div class="mb-group__row"><span><?php esc_html_e( 'PDF', 'marhaba' ); ?></span><?php marhaba_file_input( $base . '[pdf]', isset( $group['pdf'] ) ? $group['pdf'] : '' ); ?></div>
+		</div>
 		<button type="button" class="button-link-delete mb-group__remove"><?php esc_html_e( 'Delete', 'marhaba' ); ?></button>
 	</div>
 	<?php
@@ -347,8 +380,9 @@ function marhaba_brand_save( $post_id ) {
 	foreach ( $raw as $row ) {
 		$title = isset( $row['title'] ) ? sanitize_text_field( $row['title'] ) : '';
 		$image = isset( $row['image'] ) ? esc_url_raw( $row['image'] ) : '';
+		$pdf   = isset( $row['pdf'] ) ? esc_url_raw( $row['pdf'] ) : '';
 		if ( '' !== $title ) {
-			$groups[] = compact( 'title', 'image' );
+			$groups[] = compact( 'title', 'image', 'pdf' );
 		}
 	}
 	update_post_meta( $post_id, '_mb_groups', $groups );

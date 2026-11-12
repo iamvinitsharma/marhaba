@@ -5,6 +5,11 @@
 .mb-stats { display: grid; gap: 6px; max-width: 520px; margin-top: 8px; }
 .mb-stats__row { display: grid; grid-template-columns: 140px 1fr; gap: 6px; }
 .mb-groups { display: grid; gap: 8px; margin: 10px 0; }
-.mb-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px; background: #f6f7f7; border: 1px solid #dcdcde; border-radius: 6px; }
+.mb-group { display: flex; align-items: flex-start; gap: 12px; padding: 12px; background: #f6f7f7; border: 1px solid #dcdcde; border-radius: 6px; }
+.mb-group__fields { flex: 1; display: grid; gap: 8px; }
+.mb-group__fields label, .mb-group__row { display: grid; grid-template-columns: 60px 1fr; align-items: center; gap: 8px; }
+.mb-group__fields label > span, .mb-group__row > span { font-weight: 600; }
+.mb-group__remove { margin-top: 6px; }
+.mb-file { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .mb-group__handle { cursor: move; font-size: 18px; color: #787c82; }
-.mb-group .regular-text { width: 220px; }
+.mb-group .regular-text { width: 100%; max-width: 360px; }

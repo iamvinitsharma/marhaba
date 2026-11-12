@@ -25,7 +25,7 @@ Brands are managed in **Brands** in the admin menu (custom post type `brand`, ca
 
 - **First run:** on the Dashboard or Brands screen, click **Import catalogue brands** to create the 10 brands from the 2026 product catalogue. It skips brands that already exist, so it is safe to click again.
 - **URLs:** single brand `/brand/{slug}/`, all brands `/brands/`, category `/brands/category/{slug}/`.
-- **Single brand page** (layout follows saveto.com/brand/ubm): banner → introduction + key figures → What We Offer → Product Groups slider → Visit website / Request a quote → Explore other brands.
+- **Single brand page** (layout follows saveto.com/brand/ubm): banner → introduction + key figures → What We Offer → Catalogues & Documents grid → Visit website / Request a quote → Explore other brands.
 
 | Field | Where it shows |
 |---|---|
@@ -37,7 +37,8 @@ Brands are managed in **Brands** in the admin menu (custom post type `brand`, ca
 | Brand Details → Tagline, Origin, Website, Logo, Logo is white, Banner | Banner, logo areas, "Visit website" band (hidden if no website) |
 | Brand Details → What We Offer heading/text/image, Applications | Red split section |
 | Brand Details → Key figures (up to 4) | Row under the introduction (hidden if empty) |
-| Brand Details → Product groups (repeater, drag to reorder) | Product Groups slider; groups without an image get a branded placeholder card |
+| Brand Details → Documents section heading | Heading above the document cards (default "Catalogues & Documents") |
+| Brand Details → Documents (unlimited rows: title, image, PDF; drag to reorder) | Document cards grid; clicking a card opens its PDF in a new tab. Cards without a PDF are not clickable; cards without an image get a branded placeholder |
 
 The homepage brand tabs, logo strip, header **Brands** dropdown and footer brand list all read from these brands. If no brands are published, the homepage falls back to the original static brand section.
 
@@ -55,7 +56,7 @@ inc/brand-import.php           Catalogue brand data + one-click importer
 single-brand.php               Single brand page
 archive-brand.php              /brands/ listing (taxonomy-brand_category.php reuses it)
 assets/css/brands.css          Brand page styles
-assets/js/admin-brand.js       Media pickers + product-group repeater in the admin
+assets/js/admin-brand.js       Image/PDF pickers + documents repeater in the admin
 assets/css/main.css            Design styles (shared with the static prototype)
 style.css                      Theme header + WordPress-specific styles
 ```

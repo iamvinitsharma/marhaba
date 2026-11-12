@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MARHABA_VERSION', '1.1.4' );
+define( 'MARHABA_VERSION', '1.2.0' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/enquiry.php';

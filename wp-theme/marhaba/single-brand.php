@@ -97,23 +97,28 @@ while ( have_posts() ) :
 	<?php if ( $marhaba_groups ) : ?>
 		<section class="section brand-groups">
 			<div class="container">
-				<div class="brand-groups__head reveal">
-					<h2 class="brand-title"><?php esc_html_e( 'Product Groups', 'marhaba' ); ?></h2>
-					<div class="brand-groups__nav">
-						<button class="hero__arrow" type="button" data-scroll="-1" aria-label="<?php esc_attr_e( 'Previous', 'marhaba' ); ?>"><?php echo marhaba_icon( 'i-left' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
-						<button class="hero__arrow" type="button" data-scroll="1" aria-label="<?php esc_attr_e( 'Next', 'marhaba' ); ?>"><?php echo marhaba_icon( 'i-right' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></button>
-					</div>
-				</div>
-				<div class="brand-groups__track" tabindex="0">
-					<?php foreach ( $marhaba_groups as $marhaba_group ) : ?>
-						<div class="group-card<?php echo $marhaba_group['image'] ? '' : ' group-card--plain'; ?>">
+				<h2 class="brand-title reveal"><?php echo esc_html( marhaba_brand( 'groups_title' ) ); ?></h2>
+				<div class="doc-grid">
+					<?php
+					foreach ( $marhaba_groups as $marhaba_group ) :
+						$marhaba_pdf   = $marhaba_group['pdf'];
+						$marhaba_tag   = $marhaba_pdf ? 'a' : 'div';
+						$marhaba_attrs = $marhaba_pdf ? ' href="' . esc_url( $marhaba_pdf ) . '" target="_blank" rel="noopener"' : '';
+						?>
+						<<?php echo esc_html( $marhaba_tag ); ?> class="group-card reveal<?php echo $marhaba_group['image'] ? '' : ' group-card--plain'; ?><?php echo $marhaba_pdf ? ' group-card--pdf' : ''; ?>"<?php echo $marhaba_attrs; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above ?>>
 							<?php if ( $marhaba_group['image'] ) : ?>
 								<img src="<?php echo esc_url( $marhaba_group['image'] ); ?>" alt="" loading="lazy">
 							<?php else : ?>
 								<span class="group-card__mark"><?php marhaba_brand_logo( $marhaba_id ); ?></span>
 							<?php endif; ?>
+							<?php if ( $marhaba_pdf ) : ?>
+								<span class="group-card__badge">PDF</span>
+							<?php endif; ?>
 							<h3><?php echo esc_html( $marhaba_group['title'] ); ?></h3>
-						</div>
+							<?php if ( $marhaba_pdf ) : ?>
+								<span class="group-card__cta"><?php esc_html_e( 'View PDF', 'marhaba' ); ?> <?php echo marhaba_icon( 'i-arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
+							<?php endif; ?>
+						</<?php echo esc_html( $marhaba_tag ); ?>>
 					<?php endforeach; ?>
 				</div>
 			</div>

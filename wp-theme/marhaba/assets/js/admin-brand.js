@@ -22,6 +22,26 @@
     $(this).siblings('.mb-image__preview').html(url ? '<img src="' + $('<div>').text(url).html() + '" alt="">' : '');
   });
 
+  // PDF picker
+  $box.on('click', '.mb-file__pick', function (e) {
+    e.preventDefault();
+    var $wrap = $(this).closest('.mb-file');
+    var frame = wp.media({ title: 'Choose PDF', library: { type: 'application/pdf' }, multiple: false, button: { text: 'Use this PDF' } });
+    frame.on('select', function () {
+      var url = frame.state().get('selection').first().toJSON().url;
+      $wrap.find('.mb-file__url').val(url).trigger('change');
+    });
+    frame.open();
+  });
+  $box.on('click', '.mb-file__clear', function (e) {
+    e.preventDefault();
+    $(this).closest('.mb-file').find('.mb-file__url').val('').trigger('change');
+  });
+  $box.on('change input', '.mb-file__url', function () {
+    var url = $(this).val();
+    $(this).siblings('.mb-file__view').attr('href', url).prop('hidden', !url);
+  });
+
   // Repeater
   var $groups = $box.find('.mb-groups');
   $box.on('click', '.mb-groups__add', function (e) {
