@@ -170,3 +170,19 @@ html.lightbox-open, html.lightbox-open body { overflow: hidden; }
 .hero__controls { bottom: 48px; }
 @media (max-width: 960px) { .hero__controls { bottom: 40px; } }
 @media (max-width: 640px) { .hero__controls { bottom: 36px; } }
+
+/* Hero: calmer type scale + balanced spacing, and space reserved under the
+   content so the slider controls never overlap the buttons. */
+.hero__content { max-width: 620px; }
+.hero__content .eyebrow { margin-bottom: 16px; font-size: 12px; }
+.hero h1, .hero .hero__title { font-size: clamp(30px, 3.4vw, 50px); line-height: 1.12; letter-spacing: -.02em; margin-bottom: 18px; }
+.hero__content p { font-size: 16.5px; line-height: 1.7; max-width: 540px; margin-bottom: 30px; }
+.hero__ctas .btn { padding: 14px 26px; }
+@media (min-width: 641px) {
+  .hero { min-height: 640px; }
+  .hero__slide { padding: 40px 0 110px; }
+}
+@media (max-width: 640px) {
+  .hero h1, .hero .hero__title { font-size: 32px; }
+  .hero__content p { font-size: 15.5px; margin-bottom: 26px; }
+}
