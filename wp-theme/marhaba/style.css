@@ -165,3 +165,8 @@ html.lightbox-open, html.lightbox-open body { overflow: hidden; }
   .lightbox__nav--prev { left: calc(50% - 60px); }
   .lightbox__nav--next { right: calc(50% - 60px); }
 }
+
+/* Hero stats strip removed: slider controls sit at the bottom of the hero */
+.hero__controls { bottom: 48px; }
+@media (max-width: 960px) { .hero__controls { bottom: 40px; } }
+@media (max-width: 640px) { .hero__controls { bottom: 36px; } }

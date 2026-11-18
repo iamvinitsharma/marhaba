@@ -75,12 +75,4 @@ $marhaba_button = function ( $value, $classes, $arrow ) {
 		</div>
 	</div>
 
-	<div class="hero__stats">
-		<div class="container">
-			<div class="hero-stat"><strong>300<sup>+</sup></strong><span><?php esc_html_e( 'Retail outlets across Bahrain', 'marhaba' ); ?></span></div>
-			<div class="hero-stat"><strong>1,200<sup>m²</sup></strong><span><?php esc_html_e( 'Storage & warehousing', 'marhaba' ); ?></span></div>
-			<div class="hero-stat"><strong>10<sup>+</sup></strong><span><?php esc_html_e( 'International & regional brands', 'marhaba' ); ?></span></div>
-			<div class="hero-stat"><strong>Supply<sup>+</sup>Apply</strong><span><?php esc_html_e( 'End-to-end project support', 'marhaba' ); ?></span></div>
-		</div>
-	</div>
 </section>
