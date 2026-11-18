@@ -3,7 +3,7 @@ Theme Name:   Marhaba
 Theme URI:    https://www.marhabahrain.com
 Description:  Custom theme for Marhaba Palace Trading Establishment, Bahrain — building finishing materials, flooring, waterproofing and construction chemicals.
 Author:       AmpWord
-Version:      1.2.0
+Version:      1.3.0
 Requires at least: 6.4
 Requires PHP: 7.4
 License:      GPL-2.0-or-later
@@ -101,3 +101,67 @@ html.drawer-open, html.drawer-open body { overflow: hidden; }
 .drawer__contact svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
 .drawer.is-open { transition: opacity .3s ease, visibility 0s; }
 .drawer__panel > * { flex-shrink: 0; }
+
+/* ==========================================================
+   Nov 2026 changes: solutions grid, Projects gallery, contact emails
+   ========================================================== */
+/* Feature card spans 2 columns x 1 row, so 11 cards fill 3 even rows of 4 */
+.solution--feature { grid-row: auto; min-height: 380px; }
+.solution { scroll-margin-top: 110px; }
+
+/* Solutions dropdown: 11 items in 2 columns */
+.mega--solutions { width: 680px; }
+
+/* Contact: two emails */
+.contact-list .contact-list__multi > span a { display: block; color: #fff; }
+.contact-list .contact-list__multi > span a + a { margin-top: 2px; }
+.contact-list .contact-list__multi > span a:hover strong { color: var(--accent); }
+
+/* Projects gallery */
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 230px; gap: 14px; }
+.gallery__item { position: relative; display: block; border-radius: var(--radius); overflow: hidden; background: var(--ink-2); isolation: isolate; }
+.gallery__item:nth-child(8n+1) { grid-column: span 2; grid-row: span 2; }
+.gallery__item:nth-child(8n+6) { grid-column: span 2; }
+.gallery__item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .7s ease; }
+.gallery__item::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(11,31,51,0) 45%, rgba(11,31,51,.9) 100%); transition: background .35s; }
+.gallery__item:hover img { transform: scale(1.07); }
+.gallery__item:hover::after { background: linear-gradient(180deg, rgba(11,31,51,.25) 0%, rgba(11,31,51,.92) 100%); }
+.gallery__item:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.gallery__caption { position: absolute; left: 20px; right: 60px; bottom: 18px; color: #fff; }
+.gallery__caption small { display: block; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #ffb4ae; margin-bottom: 4px; }
+.gallery__caption strong { font-family: var(--font-head); font-size: 17px; font-weight: 700; }
+.gallery__zoom { position: absolute; right: 16px; bottom: 16px; width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; transform: scale(.6); opacity: 0; transition: all .3s; }
+.gallery__zoom svg { width: 17px; height: 17px; }
+.gallery__item:hover .gallery__zoom, .gallery__item:focus-visible .gallery__zoom { transform: none; opacity: 1; }
+
+/* Lightbox */
+.lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(5,14,24,.94); display: flex; align-items: center; justify-content: center; padding: 60px 80px; }
+.lightbox[hidden] { display: none; }
+.lightbox__figure { margin: 0; max-width: 1200px; width: 100%; text-align: center; }
+.lightbox__figure img { max-width: 100%; max-height: 78vh; margin: 0 auto; border-radius: 10px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.6); }
+.lightbox__figure figcaption { margin-top: 16px; color: #dfe7ef; font-family: var(--font-head); font-weight: 600; }
+.lightbox__close, .lightbox__nav { position: absolute; width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.06); color: #fff; display: grid; place-items: center; cursor: pointer; transition: background .2s, border-color .2s; }
+.lightbox__close:hover, .lightbox__nav:hover { background: var(--accent); border-color: var(--accent); }
+.lightbox__close svg, .lightbox__nav svg { width: 20px; height: 20px; }
+.lightbox__close { top: 20px; right: 20px; }
+.lightbox__nav--prev { left: 20px; top: 50%; transform: translateY(-50%); }
+.lightbox__nav--next { right: 20px; top: 50%; transform: translateY(-50%); }
+html.lightbox-open, html.lightbox-open body { overflow: hidden; }
+
+@media (max-width: 960px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+  .gallery__item:nth-child(8n+6) { grid-column: auto; }
+  .gallery__item:nth-child(8n) { grid-column: span 2; }
+  .mega--solutions { width: 560px; }
+}
+@media (max-width: 640px) {
+  .gallery { grid-auto-rows: 150px; gap: 10px; }
+  .gallery__item:nth-child(8n+1) { grid-row: span 1; }
+  .gallery__caption { left: 12px; right: 12px; bottom: 10px; }
+  .gallery__caption strong { font-size: 14px; }
+  .gallery__zoom { display: none; }
+  .lightbox { padding: 70px 12px; }
+  .lightbox__nav { top: auto; bottom: 16px; transform: none; }
+  .lightbox__nav--prev { left: calc(50% - 60px); }
+  .lightbox__nav--next { right: calc(50% - 60px); }
+}

@@ -7,12 +7,13 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MARHABA_VERSION', '1.2.0' );
+define( 'MARHABA_VERSION', '1.3.0' );
 
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/enquiry.php';
 require_once get_template_directory() . '/inc/brands.php';
 require_once get_template_directory() . '/inc/brand-import.php';
+require_once get_template_directory() . '/inc/projects.php';
 
 /**
  * Theme supports and menus.
@@ -120,6 +121,41 @@ function marhaba_logo( $white = false ) {
 }
 
 /**
+ * Current services: used by the Solutions cards, the Solutions dropdown, the mobile menu,
+ * the footer and the quote form, so they always match.
+ *
+ * @return array slug => [ title, short description, icon id ]
+ */
+function marhaba_solutions() {
+	return apply_filters(
+		'marhaba_solutions',
+		array(
+			'building-finishing' => array( __( 'Building Finishing', 'marhaba' ), __( 'Interior & exterior finishing materials', 'marhaba' ), 'i-building' ),
+			'pvc-flooring'       => array( __( 'PVC Flooring', 'marhaba' ), __( 'Rolls & tiles for every sector', 'marhaba' ), 'i-floor' ),
+			'carpet-laminate'    => array( __( 'Carpet & Laminate', 'marhaba' ), __( 'Luxury carpet & laminated parquet', 'marhaba' ), 'i-tile' ),
+			'colour-plaster'     => array( __( 'Colour, Plaster & Texture', 'marhaba' ), __( 'Coloured plasters, renders & textured finishes', 'marhaba' ), 'i-roller' ),
+			'epoxy-flooring'     => array( __( 'Epoxy Flooring', 'marhaba' ), __( 'Commercial & industrial coatings', 'marhaba' ), 'i-epoxy' ),
+			'multi-sport'        => array( __( 'Multi-Sport Flooring', 'marhaba' ), __( 'Indoor & outdoor sports surfaces', 'marhaba' ), 's-sport' ),
+			'sound-insulation'   => array( __( 'Sound Insulation & Acoustics', 'marhaba' ), __( 'Acoustic underlays & sound control', 'marhaba' ), 'i-sound' ),
+			'waterproofing'      => array( __( 'Waterproofing', 'marhaba' ), __( 'Building & infrastructure systems', 'marhaba' ), 'i-drop' ),
+			'tiles-stone'        => array( __( 'Tiles & Stone', 'marhaba' ), __( 'Adhesives, grouts & stone care', 'marhaba' ), 'i-tile' ),
+			'solvent-cements'    => array( __( 'PVC Solvent Cements', 'marhaba' ), __( 'USA & India manufactured', 'marhaba' ), 'i-pipe' ),
+			'entrance-mats'      => array( __( 'Entrance Mats & Tools', 'marhaba' ), __( 'ROMUS doormats & professional tools', 'marhaba' ), 'i-key' ),
+		)
+	);
+}
+
+/**
+ * Link to one solution card on the homepage.
+ *
+ * @param string $slug Solution slug.
+ * @return string
+ */
+function marhaba_solution_link( $slug ) {
+	return marhaba_anchor( 'solution-' . $slug );
+}
+
+/**
  * Fallback navigation (used until a Primary menu is assigned).
  */
 function marhaba_nav_fallback() {
@@ -130,15 +166,14 @@ function marhaba_nav_fallback() {
  * Mobile drawer fallback: section links, with Solutions and Brands as expandable groups.
  */
 function marhaba_drawer_fallback() {
-	$solutions = array( 'Building Finishing', 'PVC Flooring', 'Carpet & Laminate', 'Epoxy Flooring', 'Waterproofing', 'PVC Solvent Cements' );
-	$brands    = marhaba_get_brands();
+	$brands = marhaba_get_brands();
 
 	$sub = array(
 		'solutions' => array(),
 		'brands'    => array(),
 	);
-	foreach ( $solutions as $label ) {
-		$sub['solutions'][] = array( marhaba_anchor( 'solutions' ), $label );
+	foreach ( marhaba_solutions() as $slug => $solution ) {
+		$sub['solutions'][] = array( marhaba_solution_link( $slug ), $solution[0] );
 	}
 	foreach ( $brands as $brand ) {
 		$sub['brands'][] = array( get_permalink( $brand ), get_the_title( $brand ) );
@@ -152,7 +187,7 @@ function marhaba_drawer_fallback() {
 		'solutions' => __( 'Solutions', 'marhaba' ),
 		'brands'    => __( 'Brands', 'marhaba' ),
 		'services'  => __( 'Supply & Apply', 'marhaba' ),
-		'sectors'   => __( 'Sectors', 'marhaba' ),
+		'projects'  => __( 'Projects', 'marhaba' ),
 		'contact'   => __( 'Contact', 'marhaba' ),
 	);
 

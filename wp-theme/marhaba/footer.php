@@ -44,9 +44,10 @@ $marhaba_wa       = preg_replace( '/\D/', '', marhaba_opt( 'whatsapp' ) );
 				<h4><?php esc_html_e( 'Solutions', 'marhaba' ); ?></h4>
 				<ul>
 					<?php
-					foreach ( array( 'Building Finishing', 'PVC Flooring', 'Carpet & Laminate', 'Epoxy Flooring', 'Waterproofing', 'Solvent Cements' ) as $marhaba_label ) {
-						printf( '<li><a href="%s">%s</a></li>', esc_url( marhaba_anchor( 'solutions' ) ), esc_html( $marhaba_label ) );
+					foreach ( array_slice( marhaba_solutions(), 0, 7, true ) as $marhaba_slug => $marhaba_item ) {
+						printf( '<li><a href="%s">%s</a></li>', esc_url( marhaba_solution_link( $marhaba_slug ) ), esc_html( $marhaba_item[0] ) );
 					}
+					printf( '<li><a href="%s">%s</a></li>', esc_url( marhaba_anchor( 'solutions' ) ), esc_html__( 'All solutions →', 'marhaba' ) );
 					?>
 				</ul>
 			</div>
@@ -63,7 +64,7 @@ $marhaba_wa       = preg_replace( '/\D/', '', marhaba_opt( 'whatsapp' ) );
 							$links = array(
 								'about'    => __( 'About Us', 'marhaba' ),
 								'services' => __( 'Supply & Apply', 'marhaba' ),
-								'sectors'  => __( 'Sectors', 'marhaba' ),
+								'projects' => __( 'Projects', 'marhaba' ),
 								'contact'  => __( 'Contact', 'marhaba' ),
 							);
 							foreach ( $links as $id => $label ) {

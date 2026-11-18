@@ -13,7 +13,7 @@ get_header();
 
 $marhaba_sections = apply_filters(
 	'marhaba_front_sections',
-	array( 'hero', 'finder', 'pillars', 'about', 'solutions', 'services', 'brands', 'stats', 'audience', 'sectors', 'quality', 'commitment', 'contact' )
+	array( 'hero', 'finder', 'pillars', 'about', 'solutions', 'services', 'brands', 'stats', 'audience', 'projects', 'quality', 'commitment', 'contact' )
 );
 
 foreach ( $marhaba_sections as $marhaba_section ) {

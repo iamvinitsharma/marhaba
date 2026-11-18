@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
         <button data-brand="gerflor"><span>GERFLOR / BOSTIK<small>Floor coverings & adhesives</small></span><svg><use href="#i-arrow"/></svg></button>
         <button data-brand="wonderfloor"><span>Wonderfloor<small>Vinyl flooring</small></span><svg><use href="#i-arrow"/></svg></button>
         <button data-brand="terraco"><span>Terraco<small>Eco-conscious finishing</small></span><svg><use href="#i-arrow"/></svg></button>
-        <button data-brand="triton"><span>Triton Middle East<small>UAE · Sealants & coatings</small></span><svg><use href="#i-arrow"/></svg></button>
+        <button data-brand="unipack"><span>Unipack UAE<small>UAE · Tapes, PU foam & spray paint</small></span><svg><use href="#i-arrow"/></svg></button>
         <button data-brand="insuwrap"><span>INSUWRAP PVC<small>Hot-air welded membranes</small></span><svg><use href="#i-arrow"/></svg></button>
         <button data-brand="ezweld"><span>E-Z Weld &amp; HP International<small>PVC solvent cements</small></span><svg><use href="#i-arrow"/></svg></button>
       </div>
@@ -32,7 +32,7 @@ defined( 'ABSPATH' ) || exit;
       <div class="brand-panels">
         <div class="brand-panel is-active" id="brand-laticrete">
           <div class="brand-panel__body">
-            <div class="brand-logo"><img src="https://media.myklaticrete.com/mykl/2024/09/MYK-L-Logo-1-2.svg" alt="LATICRETE"></div>
+            <div class="brand-logo"><img src="https://cdn-global.laticrete.com/-/media/project/laticrete-international/shared/images/home/image-link-list/laticrete-logo_4c.svg" alt="LATICRETE"></div>
             <h3>Complete tile, stone &amp; concrete systems</h3>
             <p>A comprehensive range of products and systems supporting residential, commercial, institutional and infrastructure applications.</p>
             <div class="tags"><span>Tile & stone installation</span><span>Masonry</span><span>Resinous & decorative flooring</span><span>Concrete chemicals</span><span>Concrete restoration</span></div>
@@ -85,15 +85,15 @@ defined( 'ABSPATH' ) || exit;
           <div class="brand-panel__media"><img src="https://media.myklaticrete.com/mykl/2026/04/stones-or-tiles-fixing-on-external-facade-1.webp" alt="" loading="lazy"><span class="brand-origin">Global</span></div>
         </div>
 
-        <div class="brand-panel" id="brand-triton">
+        <div class="brand-panel" id="brand-unipack">
           <div class="brand-panel__body">
-            <div class="brand-logo"><span class="wordmark">TRITON<small>Middle East</small></span></div>
-            <h3>High-performance sealants &amp; protective coatings</h3>
-            <p>UAE-manufactured sealant and coating solutions engineered for the region's climate and construction demands.</p>
-            <div class="tags"><span>Silicone sealants</span><span>Hybrid PU sealants</span><span>Acrylic sealants</span><span>Specialty sealants</span><span>Protective coatings</span></div>
-            <a href="#" class="link-arrow">View Triton range <svg><use href="#i-arrow"/></svg></a>
+            <div class="brand-logo"><img src="https://unipackuae.com/wp-content/uploads/2020/01/cropped-logo-new-Copy2.png" alt="Unipack UAE"></div>
+            <h3>Adhesive tapes, PU foam &amp; spray paint</h3>
+            <p>Established in the UAE in 1993, Unipack's adhesive and aerosol divisions supply tapes, PU foam and spray paints used across construction, finishing and maintenance work.</p>
+            <div class="tags"><span>Masking tapes</span><span>Double-sided tapes</span><span>Aluminium &amp; FSK tapes</span><span>Warning tapes</span><span>PU foam</span><span>Spray paint</span></div>
+            <a href="#" class="link-arrow">View Unipack range <svg><use href="#i-arrow"/></svg></a>
           </div>
-          <div class="brand-panel__media"><img src="https://media.myklaticrete.com/mykl/2026/04/images8-1.webp" alt="" loading="lazy"><span class="brand-origin">UAE</span></div>
+          <div class="brand-panel__media"><img src="https://unipackuae.com/wp-content/uploads/2020/01/Aluminium-tapes-300x300.jpg" alt="" loading="lazy"><span class="brand-origin">UAE</span></div>
         </div>
 
         <div class="brand-panel" id="brand-insuwrap">
@@ -125,26 +125,26 @@ defined( 'ABSPATH' ) || exit;
 <!-- Logo marquee -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee__track">
-    <span class="marquee__item"><img src="https://media.myklaticrete.com/mykl/2024/09/MYK-L-Logo-1-2.svg" alt=""></span>
+    <span class="marquee__item"><img src="https://cdn-global.laticrete.com/-/media/project/laticrete-international/shared/images/home/image-link-list/laticrete-logo_4c.svg" alt=""></span>
     <span class="marquee__item"><img src="https://www.dcp-int.com/themes/dcp/images/logo.svg" alt=""></span>
     <span class="marquee__item"><img src="https://www.gerflor.com/themes/custom/gerflor_base/logo.svg" alt=""></span>
     <span class="marquee__item"><img src="https://www.bostik.com/files/live/sites/shared_bostik/files/images/Logos/Bostik_Logo_Header.svg" alt=""></span>
     <span class="marquee__item"><img src="https://www.wonderfloor.co.in/assets/img/logo/logo.png" alt=""></span>
     <span class="marquee__item"><img src="https://www.saveto.com/sites/default/files/2025-04/insuwrap-colored.svg" alt=""></span>
     <span class="marquee__item"><img class="logo-dark" src="https://b4366279.assetcdn.net/2.0/4366279/wp-content/uploads/2026/01/Terraco-White-Logo-Main.png" alt=""></span>
-    <span class="marquee__item">TRITON</span>
+    <span class="marquee__item"><img src="https://unipackuae.com/wp-content/uploads/2020/01/cropped-logo-new-Copy2.png" alt=""></span>
     <span class="marquee__item"><img src="https://e-zweld.com/wp-content/themes/ezw/images/horizontal-logo-color.svg" alt=""></span>
     <span class="marquee__item"><img src="https://www.hpadhesives.com/wp-content/uploads/2023/06/logo-01.png" alt=""></span>
     <span class="marquee__item"><img src="https://www.romusworld.com/bundles/romusfront/img/logo-Romus_195x59-web_GB.png" alt=""></span>
     <!-- duplicate for seamless loop -->
-    <span class="marquee__item"><img src="https://media.myklaticrete.com/mykl/2024/09/MYK-L-Logo-1-2.svg" alt=""></span>
+    <span class="marquee__item"><img src="https://cdn-global.laticrete.com/-/media/project/laticrete-international/shared/images/home/image-link-list/laticrete-logo_4c.svg" alt=""></span>
     <span class="marquee__item"><img src="https://www.dcp-int.com/themes/dcp/images/logo.svg" alt=""></span>
     <span class="marquee__item"><img src="https://www.gerflor.com/themes/custom/gerflor_base/logo.svg" alt=""></span>
     <span class="marquee__item"><img src="https://www.bostik.com/files/live/sites/shared_bostik/files/images/Logos/Bostik_Logo_Header.svg" alt=""></span>
     <span class="marquee__item"><img src="https://www.wonderfloor.co.in/assets/img/logo/logo.png" alt=""></span>
     <span class="marquee__item"><img src="https://www.saveto.com/sites/default/files/2025-04/insuwrap-colored.svg" alt=""></span>
     <span class="marquee__item"><img class="logo-dark" src="https://b4366279.assetcdn.net/2.0/4366279/wp-content/uploads/2026/01/Terraco-White-Logo-Main.png" alt=""></span>
-    <span class="marquee__item">TRITON</span>
+    <span class="marquee__item"><img src="https://unipackuae.com/wp-content/uploads/2020/01/cropped-logo-new-Copy2.png" alt=""></span>
     <span class="marquee__item"><img src="https://e-zweld.com/wp-content/themes/ezw/images/horizontal-logo-color.svg" alt=""></span>
     <span class="marquee__item"><img src="https://www.hpadhesives.com/wp-content/uploads/2023/06/logo-01.png" alt=""></span>
     <span class="marquee__item"><img src="https://www.romusworld.com/bundles/romusfront/img/logo-Romus_195x59-web_GB.png" alt=""></span>

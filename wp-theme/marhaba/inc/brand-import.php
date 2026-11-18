@@ -103,7 +103,7 @@ function marhaba_catalogue_brands() {
 					'content' => 'LATICRETE offers a comprehensive range of products and systems covering tile and stone installation and care, masonry installation and care, resinous and decorative flooring, concrete construction chemicals and concrete restoration.' . "\n\n" . 'These solutions support a wide variety of residential, commercial, institutional and infrastructure applications.',
 					'origin'  => 'USA',
 					'website' => 'https://laticrete.com',
-					'logo'    => 'https://media.myklaticrete.com/mykl/2024/09/MYK-L-Logo-1-2.svg',
+					'logo'    => 'https://cdn-global.laticrete.com/-/media/project/laticrete-international/shared/images/home/image-link-list/laticrete-logo_4c.svg',
 					'banner'  => $b1,
 					'offer'   => 'Marhaba supplies the LATICRETE range to retailers and projects across Bahrain, from tile adhesives and grouts to resinous flooring and concrete repair.' . "\n\n" . 'Our team provides product recommendations and technical submittals for consultants and contractors, plus supply and application services for tiles, stone and flooring.',
 					'offer_image' => $l . 'stone-adhesive-1.webp',
@@ -149,18 +149,22 @@ function marhaba_catalogue_brands() {
 			'name'   => __( 'Sealants & Solvent Cements', 'marhaba' ),
 			'brands' => array(
 				array(
-					'title'   => 'Triton Middle East',
-					'slug'    => 'triton',
-					'tagline' => 'UAE-based sealants & protective coatings',
-					'excerpt' => 'High-performance silicone, hybrid PU, acrylic and specialty sealants plus protective coatings.',
-					'content' => 'Triton Middle East, based in the UAE, specializes in the manufacture of high-performance sealants and protective coating solutions.',
+					'title'   => 'Unipack UAE',
+					'slug'    => 'unipack-uae',
+					'tagline' => 'Adhesive tapes, PU foam & spray paint',
+					'excerpt' => 'Adhesive tapes, PU foam and spray paints for construction, finishing and maintenance work.',
+					'content' => 'Unipack Containers &amp; Carton Products LLC, established in the UAE in 1993, is a well-recognised manufacturer, distributor and exporter backed by more than 25 years of experience.' . "
+
+" . 'Its adhesive and aerosol divisions supply masking, duct, double-sided, aluminium, FSK, PVC pipe-wrapping and warning tapes, together with PU foam and spray paints used across construction, finishing and maintenance work.',
 					'origin'  => 'UAE',
-					'website' => '',
-					'logo'    => '',
+					'website' => 'https://unipackuae.com',
+					'logo'    => 'https://unipackuae.com/wp-content/uploads/2020/01/cropped-logo-new-Copy2.png',
 					'banner'  => $b1,
-					'offer'   => 'Marhaba stocks Triton sealants and protective coatings for retail customers, applicators and project sites across Bahrain.' . "\n\n" . 'Our sales team helps match the right sealant to each joint, substrate and exposure condition.',
-					'offer_image' => $l . 'images8-1.webp',
-					'groups'  => array( array( 'Silicone sealants', $l . 'images8-1.webp' ), array( 'Advanced hybrid PU sealants', $l . 'specialty-adhesive-1-1.webp' ), array( 'Acrylic sealants', '' ), array( 'Specialty sealants', '' ), array( 'Protective coatings', $l . 'images3-1-1.webp' ) ),
+					'offer'   => 'Marhaba supplies Unipack tapes, PU foam and spray paints to retailers, applicators and project sites across Bahrain.' . "
+
+" . 'From masking and protection on site to sealing gaps and touch-up finishing, we keep the everyday consumables contractors need in stock.',
+					'offer_image' => 'https://unipackuae.com/wp-content/uploads/2020/01/Aluminium-tapes-300x300.jpg',
+					'groups'  => array( array( 'Masking tapes', 'https://unipackuae.com/wp-content/uploads/2020/01/maskin1-300x300.jpg' ), array( 'Double-sided tapes', 'https://unipackuae.com/wp-content/uploads/2020/01/double-side-300x300.jpg' ), array( 'Aluminium & FSK tapes', 'https://unipackuae.com/wp-content/uploads/2020/01/Aluminium-tapes-300x300.jpg' ), array( 'Warning tapes', 'https://unipackuae.com/wp-content/uploads/2020/01/Warning-tapes-300x300.jpg' ), array( 'Duct & PVC pipe-wrapping tapes', '' ), array( 'PU foam', 'https://unipackuae.com/wp-content/uploads/2020/01/pu-foam-300x300.jpg' ), array( 'Spray paint', '' ) ),
 					'apply'   => false,
 				),
 				array(
@@ -311,7 +315,7 @@ function marhaba_import_notice() {
 	printf(
 		'<div class="notice notice-info"><p><strong>%s</strong> %s</p><p><a class="button button-primary" href="%s">%s</a></p></div>',
 		esc_html__( 'Marhaba theme:', 'marhaba' ),
-		esc_html__( 'No brands yet. Import the 10 brands from the 2026 product catalogue (GERFLOR, BOSTIK, Wonderfloor, Terrain Floorings, LATICRETE, DCP, Terraco, Triton, E-Z Weld, HP International)?', 'marhaba' ),
+		esc_html__( 'No brands yet. Import the 10 brands from the 2026 product catalogue (GERFLOR, BOSTIK, Wonderfloor, Terrain Floorings, LATICRETE, DCP, Terraco, Unipack UAE, E-Z Weld, HP International)?', 'marhaba' ),
 		esc_url( $url ),
 		esc_html__( 'Import catalogue brands', 'marhaba' )
 	);

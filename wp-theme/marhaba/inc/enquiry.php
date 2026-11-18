@@ -15,15 +15,9 @@ defined( 'ABSPATH' ) || exit;
  * @return string[]
  */
 function marhaba_enquiry_topics() {
-	return array(
-		__( 'Building finishing materials', 'marhaba' ),
-		__( 'PVC flooring', 'marhaba' ),
-		__( 'Carpet & laminate', 'marhaba' ),
-		__( 'Epoxy flooring', 'marhaba' ),
-		__( 'Waterproofing', 'marhaba' ),
-		__( 'PVC solvent cements', 'marhaba' ),
-		__( 'Supply & application', 'marhaba' ),
-	);
+	$topics   = wp_list_pluck( marhaba_solutions(), 0 );
+	$topics[] = __( 'Supply & application', 'marhaba' );
+	return array_values( $topics );
 }
 
 /**

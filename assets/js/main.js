@@ -73,4 +73,47 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  // Projects gallery lightbox
+  var gallery = document.querySelector('[data-gallery]');
+  var lightbox = document.getElementById('lightbox');
+  if (gallery && lightbox) {
+    var items = Array.prototype.slice.call(gallery.querySelectorAll('.gallery__item'));
+    var lbImg = lightbox.querySelector('img');
+    var lbCap = lightbox.querySelector('figcaption');
+    var lbClose = lightbox.querySelector('.lightbox__close');
+    var lbIndex = 0, lastFocus = null;
+    function show(i) {
+      lbIndex = (i + items.length) % items.length;
+      var it = items[lbIndex];
+      lbImg.src = it.getAttribute('href');
+      lbImg.alt = it.querySelector('img').alt;
+      lbCap.textContent = it.getAttribute('data-caption') || '';
+    }
+    function openLb(i) {
+      lastFocus = document.activeElement;
+      show(i);
+      lightbox.hidden = false;
+      document.documentElement.classList.add('lightbox-open');
+      setTimeout(function () { lbClose.focus(); }, 30);
+    }
+    function closeLb() {
+      lightbox.hidden = true;
+      document.documentElement.classList.remove('lightbox-open');
+      if (lastFocus) lastFocus.focus({ preventScroll: true });
+    }
+    items.forEach(function (it, i) {
+      it.addEventListener('click', function (e) { e.preventDefault(); openLb(i); });
+    });
+    lbClose.addEventListener('click', closeLb);
+    lightbox.querySelector('.lightbox__nav--prev').addEventListener('click', function () { show(lbIndex - 1); });
+    lightbox.querySelector('.lightbox__nav--next').addEventListener('click', function () { show(lbIndex + 1); });
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLb(); });
+    document.addEventListener('keydown', function (e) {
+      if (lightbox.hidden) return;
+      if (e.key === 'Escape') closeLb();
+      if (e.key === 'ArrowLeft') show(lbIndex - 1);
+      if (e.key === 'ArrowRight') show(lbIndex + 1);
+    });
+  }
 })();

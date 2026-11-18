@@ -10,6 +10,7 @@ defined( 'ABSPATH' ) || exit;
 $marhaba_phone  = marhaba_opt( 'phone' );
 $marhaba_mobile = marhaba_opt( 'mobile' );
 $marhaba_email  = marhaba_opt( 'email' );
+$marhaba_emails = array_filter( array( $marhaba_email, marhaba_opt( 'email_2' ) ) );
 $marhaba_sc     = marhaba_opt( 'form_sc' );
 ?>
 <section class="section" id="contact">
@@ -26,8 +27,12 @@ $marhaba_sc     = marhaba_opt( 'form_sc' );
 					<?php if ( $marhaba_mobile ) : ?>
 						<a href="<?php echo esc_attr( marhaba_tel( $marhaba_mobile ) ); ?>"><i><?php echo marhaba_icon( 'i-whatsapp' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></i><span><small><?php esc_html_e( 'Mobile', 'marhaba' ); ?></small><strong><?php echo esc_html( $marhaba_mobile ); ?></strong></span></a>
 					<?php endif; ?>
-					<?php if ( $marhaba_email ) : ?>
-						<a href="mailto:<?php echo esc_attr( $marhaba_email ); ?>"><i><?php echo marhaba_icon( 'i-mail' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></i><span><small><?php esc_html_e( 'Email', 'marhaba' ); ?></small><strong><?php echo esc_html( $marhaba_email ); ?></strong></span></a>
+					<?php if ( $marhaba_emails ) : ?>
+						<div class="contact-list__multi"><i><?php echo marhaba_icon( 'i-mail' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></i><span><small><?php esc_html_e( 'Email', 'marhaba' ); ?></small>
+							<?php foreach ( $marhaba_emails as $marhaba_mail ) : ?>
+								<a href="mailto:<?php echo esc_attr( $marhaba_mail ); ?>"><strong><?php echo esc_html( $marhaba_mail ); ?></strong></a>
+							<?php endforeach; ?>
+						</span></div>
 					<?php endif; ?>
 					<div><i><?php echo marhaba_icon( 'i-pin' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></i><span><small><?php esc_html_e( 'Location', 'marhaba' ); ?></small><strong><?php echo esc_html( marhaba_opt( 'location' ) ); ?></strong></span></div>
 				</div>
